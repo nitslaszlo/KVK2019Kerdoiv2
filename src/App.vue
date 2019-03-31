@@ -164,15 +164,13 @@
               </v-card>
             </v-flex>
             <!-- 7. Melyik LMS-t használja? -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12 v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>school</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >7. Melyik LMS rendszert / rendszereket használja?</span>
+                    <span>7. Melyik LMS rendszert / rendszereket használja?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -192,15 +190,13 @@
             </v-flex>
 
             <!-- 8.	Hány éve használ e-learning (LMS) keretrendszert munkája támogatására -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12  v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon large left>mdi-numeric</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >8. Hány éve használ e-learning (LMS) keretrendszert munkája támogatására?</span>
+                    <span>8. Hány éve használ e-learning (LMS) keretrendszert munkája támogatására?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -218,15 +214,13 @@
             </v-flex>
 
             <!-- 9.	Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban? -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12 v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon large left>mdi-metronome</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >9. Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban?</span>
+                    <span>9. Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -244,15 +238,13 @@
             </v-flex>
 
             <!-- 10.	A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportokban? -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12 v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon large left>mdi-chart-histogram</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >10. A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportoknál?</span>
+                    <span>10. A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportoknál?</span>
                   </div>
                 </v-card-title>
                 <!-- Quiz -->
@@ -390,15 +382,13 @@
               </v-card>
             </v-flex>
             <!-- 11. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását a nappali képzésben? -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12 v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>mdi-weather-sunny</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >11. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását a nappali képzésben?</span>
+                    <span>11. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását a nappali képzésben?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -415,15 +405,13 @@
               </v-card>
             </v-flex>
             <!-- 12. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását az esti képzésben? -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12 v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>mdi-weather-sunset</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >12. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását az esti képzésben?</span>
+                    <span>12. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását az esti képzésben?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -440,15 +428,13 @@
               </v-card>
             </v-flex>
             <!-- 13. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel? -->
-            <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-flex xs12 sm12 md12 lg12 xl12 v-show = "lmsYorN">
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>mdi-emoticon-happy</v-icon>
-                    <span
-                      :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >13. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel?</span>
+                    <span>13. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
