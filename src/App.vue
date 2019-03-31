@@ -9,31 +9,47 @@
       <v-content>
         <v-container fluid>
           <v-layout row wrap justify-center>
-            <!-- 1. Melyik megyében / megyékben található az intézmény? -->
+            <!-- Bevezető -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon class="floatleft" large left>place</v-icon>
-                    <span>1. Melyik megyében / megyékben található az intézmény, ahol tanít?</span>
+                    <v-icon class="floatleft" large left>mdi-information-outline</v-icon>
+                    <span>
+                      Kedves Kolléga!<br>A BME GTK Alkalmazott Pedagógia és Pszichológia
+                      Intézet Műszaki Pedagógia Tanszék Közoktatási Vezető és pedagógus-szakvizsga szakirányú továbbképzési
+                      szak végzős hallgatójaként készítem szakdolgozatomat.<br>
+                      A dolgozat címe:<br>
+                      <b>E-learning keretrendszerek alkalmazása az iskolarendszerű szakképzésben</b><br>
+                      Kérem, hogy a következő kérdőív kitöltésével segítse kutatásomat!<br>
+                      Köszönettel: Nits László
+                    </span>
+                  </div>
+                </v-card-title>
+              </v-card>
+            </v-flex>
+            <!-- 1. Neme férfi/nő -->
+            <v-flex xs12 sm12 md12 lg12 xl12>
+              <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
+                <v-img></v-img>
+                <v-card-title primary-title>
+                  <div>
+                    <v-icon class="floatleft" large left>mdi-gender-male-female</v-icon>
+                    <span>1. A kérdőívet kitöltő neme:</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-select
-                    dark
-                    :items="megyekLista"
-                    clearable
-                    chips
-                    multiple
-                    label="Megye"
-                    outline
-                    v-model="megyek"
-                  />
+                  <v-switch
+                    color="success"
+                    class="bordered pl-4 pt-4"
+                    v-model="ferfi"
+                    :label="`${ferfi ? 'Férfi' : 'Nő'}`"
+                  ></v-switch>
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 2. Melyik korcsoportba tarozik? -->
+            <!-- 2. Melyik korcsoportba tartozik? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
@@ -55,14 +71,39 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 3. Milyen típusú tantárgyakat tanít? -->
+            <!-- 3. Melyik megyében / megyékben található az intézmény, ahol tanít? -->
+            <v-flex xs12 sm12 md12 lg12 xl12>
+              <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
+                <v-img></v-img>
+                <v-card-title primary-title>
+                  <div>
+                    <v-icon class="floatleft" large left>place</v-icon>
+                    <span>3. Melyik megyében / megyékben található az intézmény, ahol tanít?</span>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <v-select
+                    dark
+                    :items="megyekLista"
+                    clearable
+                    chips
+                    multiple
+                    label="Megye"
+                    outline
+                    v-model="megyek"
+                  />
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+
+            <!-- 4. Milyen típusú tantárgyakat tanít? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>mdi-library</v-icon>
-                    <span>3. Milyen típusú tantárgyakat tanít?</span>
+                    <span>4. Milyen típusú tantárgyakat tanít?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -78,20 +119,20 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 4. Milyen képzési formában tanít -->
+            <!-- 5. Milyen képzési formában tanít -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>mdi-weather-sunset-down</v-icon>
-                    <span>4. Milyen képzési formábnan tanít?</span>
+                    <span>5. Milyen képzési formában tanít?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
                   <v-select
                     :items="kepzesiFormaLista"
-                    suffix="fő"
+                    suffix
                     clearable
                     chips
                     multiple
@@ -102,14 +143,14 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 5. LMS igen/nem -->
+            <!-- 6. Használ az Ön által tanított csoportokban e-learning (LMS) keretrendszert (pl.: Moodle, Ilias, Canvas, stb.)? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>mdi-auto-fix</v-icon>
-                    <span>5. Használ az Ön által tanított csoportokban LMS keretrendszert (pl.: Moodle, Ilias, Canvas, stb.)?</span>
+                    <span>6. Használ az Ön által tanított csoportokban e-learning (LMS) keretrendszert (pl.: Moodle, Ilias, Canvas, stb.)?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -122,7 +163,7 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 6. Melyik LMS-t használja? -->
+            <!-- 7. Melyik LMS-t használja? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
@@ -131,7 +172,7 @@
                     <v-icon class="floatleft" large left>school</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >6. Melyik LMS rendszert / rendszereket használja?</span>
+                    >7. Melyik LMS rendszert / rendszereket használja?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -150,22 +191,22 @@
               </v-card>
             </v-flex>
 
-            <!-- 7.	Hány éve használ LMS keretrendszert munkája támogatására -->
+            <!-- 8.	Hány éve használ e-learning (LMS) keretrendszert munkája támogatására -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon large left>mdi-account-question</v-icon>
+                    <v-icon large left>mdi-numeric</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >7. Hány éve használ LMS keretrendszert munkája támogatására?</span>
+                    >8. Hány éve használ e-learning (LMS) keretrendszert munkája támogatására?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
                   <v-select
                     :items="evekLista"
-                    suffix="éve"
+                    suffix
                     clearable
                     :disabled="!lmsYorN"
                     label="Évek száma"
@@ -175,16 +216,17 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 8.	Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban? -->
+
+            <!-- 9.	Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon large left>mdi-lan-connect</v-icon>
+                    <v-icon large left>mdi-metronome</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >8. Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban?</span>
+                    >9. Milyen gyakran használja az LMS keretrendszert a szorgalmi időszakban?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -200,16 +242,17 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 9.	A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportokban? -->
+
+            <!-- 10.	A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportokban? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon large left>mdi-auto-fix</v-icon>
+                    <v-icon large left>mdi-chart-histogram</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >9. A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportoknál?</span>
+                    >10. A következő LMS szolgáltatásokat milyen gyakran alkalmazza az Ön által tanított csoportoknál?</span>
                   </div>
                 </v-card-title>
                 <!-- Quiz -->
@@ -219,7 +262,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Tesztek tanulói teljesítmény méréséhez"
+                    label="10.1 Tesztek tanulói teljesítmény méréséhez"
                     outline
                     v-model="tesztGyakorisaga"
                   />
@@ -231,7 +274,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Tanulói munkák (órai / házi) feltöltése"
+                    label="10.2 Tanulói munkák (órai / házi) feltöltése"
                     outline
                     v-model="feladatGyakorisaga"
                   />
@@ -243,7 +286,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Fórumok használata (aszinkron kommunikáció)"
+                    label="10.3 Fórumok használata (aszinkron kommunikáció)"
                     outline
                     v-model="forumGyakorisaga"
                   />
@@ -255,7 +298,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Meglévő digitális tananyagok megosztása"
+                    label="10.4 Meglévő digitális tananyagok megosztása"
                     outline
                     v-model="tananyagGyakorisaga"
                   />
@@ -267,7 +310,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Digitális tananyagok készítése az LMS keretrendszeren belül"
+                    label="10.5 Digitális tananyagok készítése az LMS keretrendszeren belül"
                     outline
                     v-model="oldalGyakorisaga"
                   />
@@ -279,7 +322,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Hivatkozások (URL címek) megosztása"
+                    label="10.6 Hivatkozások (URL címek) megosztása"
                     outline
                     v-model="urlGyakorisaga"
                   />
@@ -291,7 +334,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Fogalomtár készítése"
+                    label="10.7 Fogalomtár készítése"
                     outline
                     v-model="fogalomtarGyakorisaga"
                   />
@@ -303,7 +346,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Tanulói visszajelzések"
+                    label="10.8 Tanulói visszajelzések"
                     outline
                     v-model="visszajelzesGyakorisaga"
                   />
@@ -315,7 +358,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Tanulói választások"
+                    label="10.9 Tanulói választások"
                     outline
                     v-model="valasztasGyakorisaga"
                   />
@@ -327,7 +370,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Adatbázisok létrehozása / kezelése"
+                    label="10.10 Adatbázisok létrehozása / kezelése"
                     outline
                     v-model="adatbazisGyakorisaga"
                   />
@@ -339,23 +382,23 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="Tanulói együttműködésen alapuló feladatok megoldása (pl. Wiki oldalak készítése)"
+                    label="10.11 Tanulói együttműködésen alapuló feladatok megoldása (pl. Wiki oldalak készítése)"
                     outline
                     v-model="wikiGyakorisaga"
                   />
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 10. Mennyire tartja hasznos eszköznek az LMS keretrendszer alkalmazását a nappali képzésben? -->
+            <!-- 11. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását a nappali képzésben? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon class="floatleft" large left>school</v-icon>
+                    <v-icon class="floatleft" large left>mdi-weather-sunny</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >10. Mennyire tartja hasznos eszköznek az LMS keretrendszer alkalmazását a nappali képzésben?</span>
+                    >11. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását a nappali képzésben?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -371,16 +414,16 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 11. Mennyire tartja hasznos eszköznek az LMS keretrendszer alkalmazását az esti képzésben? -->
+            <!-- 12. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását az esti képzésben? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon class="floatleft" large left>school</v-icon>
+                    <v-icon class="floatleft" large left>mdi-weather-sunset</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >11. Mennyire tartja hasznos eszköznek az LMS keretrendszer alkalmazását az esti képzésben?</span>
+                    >12. Mennyire tartja hasznosnak az LMS keretrendszer alkalmazását az esti képzésben?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -396,16 +439,16 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 12. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel? -->
+            <!-- 13. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
-                    <v-icon class="floatleft" large left>people</v-icon>
+                    <v-icon class="floatleft" large left>mdi-emoticon-happy</v-icon>
                     <span
                       :class="`${lmsYorN ? '' : 'disabledTitle'}`"
-                    >12. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel?</span>
+                    >13. Általánosságban mennyire elégedett az Ön által használt LMS keretrendszerrel?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -428,7 +471,7 @@
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>save</v-icon>
-                    <span>A kérdőív adatainak mentéséhez az 1-5. kérdésekre a választ legyen szíves megadni.</span>
+                    <span>Mentés</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -507,7 +550,7 @@ export default class App extends Vue {
     "Hetente 1 alkalommal",
     "Havonta 1-2 alkalommal",
     "2-3 havonta",
-    "Szinte alíg"
+    "Szinte alig"
   ];
 
   private gyakorisagLista2: string[] = [
@@ -523,7 +566,7 @@ export default class App extends Vue {
     "Hasznos",
     "Kevésbé hasznos",
     "Nem hasznos",
-    "Egyátalán nem hasznos"
+    "Egyáltalán nem hasznos"
   ];
 
   private elegedettsegiLista: string[] = [
@@ -534,94 +577,142 @@ export default class App extends Vue {
     "Elégedetlen vagyok"
   ];
 
-  private megyek: string[] = []; // 1
+  private ferfi: boolean = false; // 1
   private korcsoport: string = ""; // 2
-  private tantargyakTipusa: string[] = []; // 3
-  private kepzesiForma: string[] = []; // 4
-  private lmsYorN: boolean = false; // 5
-  private lmsHasznal: string[] = []; // 6
-  private lsmHanyEve: string = ""; // 7
-  private lsmHasznalatGyakorisaga: string = ""; // 8
-  private tesztGyakorisaga: string = ""; // 9.1
-  private feladatGyakorisaga: string = ""; // 9.2
-  private forumGyakorisaga: string = ""; // 9.3
-  private tananyagGyakorisaga: string = ""; // 9.4
-  private oldalGyakorisaga: string = ""; // 9.5
-  private urlGyakorisaga: string = ""; // 9.6
-  private fogalomtarGyakorisaga: string = ""; // 9.7
-  private visszajelzesGyakorisaga: string = ""; // 9.8
-  private valasztasGyakorisaga: string = ""; // 9.9
-  private adatbazisGyakorisaga: string = ""; // 9.10
-  private wikiGyakorisaga: string = ""; // 9.11
-  private hasznosNappali: string = ""; // 10
-  private hasznosEsti: string = ""; // 11
-  private lmsElegedett: string = ""; // 12
+  private megyek: string[] = []; // 3
+  private tantargyakTipusa: string[] = []; // 4
+  private kepzesiForma: string[] = []; // 5
+  private lmsYorN: boolean = false; // 6
+  private lmsHasznal: string[] = []; // 7
+  private lsmHanyEve: string = ""; // 8
+  private lsmHasznalatGyakorisaga: string = ""; // 9
+  private tesztGyakorisaga: string = ""; // 10.1
+  private feladatGyakorisaga: string = ""; // 10.2
+  private forumGyakorisaga: string = ""; // 10.3
+  private tananyagGyakorisaga: string = ""; // 10.4
+  private oldalGyakorisaga: string = ""; // 10.5
+  private urlGyakorisaga: string = ""; // 10.6
+  private fogalomtarGyakorisaga: string = ""; // 10.7
+  private visszajelzesGyakorisaga: string = ""; // 10.8
+  private valasztasGyakorisaga: string = ""; // 10.9
+  private adatbazisGyakorisaga: string = ""; // 10.10
+  private wikiGyakorisaga: string = ""; // 10.11
+  private hasznosNappali: string = ""; // 11
+  private hasznosEsti: string = ""; // 12
+  private lmsElegedett: string = ""; // 13
 
   // Új elem hozzáadása az adatbázishoz
   private add(): void {
-    if (
-      this.megyek.length === 0 ||
-      this.korcsoport === "" ||
-      this.tantargyakTipusa.length === 0 ||
-      this.kepzesiForma.length === 0
-    ) {
+    let nemAdottVálaszt: string = "";
+    if (this.korcsoport === "") {
+      nemAdottVálaszt += "2.  ";
+    }
+    if (this.megyek.length === 0) {
+      nemAdottVálaszt += "3.  ";
+    }
+    if (this.tantargyakTipusa.length === 0) {
+      nemAdottVálaszt += "4.  ";
+    }
+    if (this.kepzesiForma.length === 0) {
+      nemAdottVálaszt += "5.  ";
+    }
+    if (nemAdottVálaszt.length > 0) {
+      // tslint:disable-next-line:max-line-length
       alert(
-        "A kérdőív adatainak mentéséhez az 1-5. kérdéseket legyen szíves megadni!"
+        `A kérdőív adatainak mentéséhez a következő kérdésekre a választ legyen szíves megadni: \r${nemAdottVálaszt}`
       );
       return;
     }
-    if (
-      this.lmsYorN &&
-      (this.lmsHasznal.length === 0 ||
-        this.lsmHanyEve === "" ||
-        this.lsmHasznalatGyakorisaga === "" ||
-        this.tesztGyakorisaga === "" ||
-        this.feladatGyakorisaga === "" ||
-        this.forumGyakorisaga === "" ||
-        this.tananyagGyakorisaga === "" ||
-        this.oldalGyakorisaga === "" ||
-        this.urlGyakorisaga === "" ||
-        this.fogalomtarGyakorisaga === "" ||
-        this.visszajelzesGyakorisaga === "" ||
-        this.valasztasGyakorisaga === "" ||
-        this.adatbazisGyakorisaga === "" ||
-        this.wikiGyakorisaga === "" ||
-        this.hasznosNappali === "" ||
-        this.hasznosEsti === "" ||
-        this.lmsElegedett === "")
-    ) {
-      alert(
-        "A kérdőív adatainak mentéséhez az 7-12. kérdéseket legyen szíves megadni!"
-      );
-      return;
+
+    if (this.lmsYorN) {
+      nemAdottVálaszt = "";
+      if (this.lmsHasznal.length === 0) {
+        nemAdottVálaszt += "7.  ";
+      }
+      if (this.lsmHanyEve === "") {
+        nemAdottVálaszt += "8.  ";
+      }
+      if (this.lsmHasznalatGyakorisaga === "") {
+        nemAdottVálaszt += "9.  ";
+      }
+      if (this.tesztGyakorisaga === "") {
+        nemAdottVálaszt += "10.1  ";
+      }
+      if (this.feladatGyakorisaga === "") {
+        nemAdottVálaszt += "10.2  ";
+      }
+      if (this.forumGyakorisaga === "") {
+        nemAdottVálaszt += "10.3  ";
+      }
+      if (this.tananyagGyakorisaga === "") {
+        nemAdottVálaszt += "10.4  ";
+      }
+      if (this.oldalGyakorisaga === "") {
+        nemAdottVálaszt += "10.5  ";
+      }
+      if (this.urlGyakorisaga === "") {
+        nemAdottVálaszt += "10.6  ";
+      }
+      if (this.fogalomtarGyakorisaga === "") {
+        nemAdottVálaszt += "10.7  ";
+      }
+      if (this.visszajelzesGyakorisaga === "") {
+        nemAdottVálaszt += "10.8  ";
+      }
+      if (this.valasztasGyakorisaga === "") {
+        nemAdottVálaszt += "10.9  ";
+      }
+      if (this.adatbazisGyakorisaga === "") {
+        nemAdottVálaszt += "10.10  ";
+      }
+      if (this.wikiGyakorisaga === "") {
+        nemAdottVálaszt += "10.11  ";
+      }
+      if (this.hasznosNappali === "") {
+        nemAdottVálaszt += "12.  ";
+      }
+      if (this.hasznosEsti === "") {
+        nemAdottVálaszt += "12.  ";
+      }
+      if (this.lmsElegedett === "") {
+        nemAdottVálaszt += "13.";
+      }
+      if (nemAdottVálaszt.length > 0) {
+        // tslint:disable-next-line:max-line-length
+        alert(
+          `A kérdőív adatainak mentéséhez a következő kérdésekre a választ legyen szíves megadni: \r${nemAdottVálaszt}`
+        );
+        return;
+      }
     }
 
     // Firestore objektum összeállítása
     const obj = {} as any;
     obj.K00_createdAt = new Date();
-    obj.K01_megyek = this.megyek;
+    obj.K01_ferfi = this.ferfi;
     obj.K02_korcsoport = this.korcsoport;
-    obj.K03_tanargyakTipusa = this.tantargyakTipusa;
-    obj.K04_kepzesiForma = this.kepzesiForma;
-    obj.K05_lmsYorN = this.lmsYorN;
+    obj.K03_megyek = this.megyek;
+    obj.K04_tanargyakTipusa = this.tantargyakTipusa;
+    obj.K05_kepzesiForma = this.kepzesiForma;
+    obj.K06_lmsYorN = this.lmsYorN;
     if (this.lmsYorN) {
-      obj.K06_lmsHasznal = this.lmsHasznal;
-      obj.K07_lsmHanyEve = this.lsmHanyEve;
-      obj.K08_lsmHasznalatGyakorisaga = this.lsmHasznalatGyakorisaga;
-      obj.K09_tesztGyakorisaga = this.tesztGyakorisaga;
-      obj.K10_feladatGyakorisaga = this.feladatGyakorisaga;
-      obj.K11_forumGyakorisaga = this.forumGyakorisaga;
-      obj.K12_tananyagGyakorisaga = this.tananyagGyakorisaga;
-      obj.K13_oldalGyakorisaga = this.oldalGyakorisaga;
-      obj.K14_urlGyakorisaga = this.urlGyakorisaga;
-      obj.K15_fogalomtarGyakorisaga = this.fogalomtarGyakorisaga;
-      obj.K16_visszajelzesGyakorisaga = this.visszajelzesGyakorisaga;
-      obj.K17_valasztasGyakorisaga = this.valasztasGyakorisaga;
-      obj.K18_adatbazisGyakorisaga = this.adatbazisGyakorisaga;
-      obj.K19_wikiGyakorisaga = this.wikiGyakorisaga;
-      obj.K20_hasznosNappali = this.hasznosNappali;
-      obj.K21_hasznosEsti = this.hasznosEsti;
-      obj.K22_lmsElegedett = this.lmsElegedett;
+      obj.K07_lmsHasznal = this.lmsHasznal;
+      obj.K08_lsmHanyEve = this.lsmHanyEve;
+      obj.K09_lsmHasznalatGyakorisaga = this.lsmHasznalatGyakorisaga;
+      obj.K10a_tesztGyakorisaga = this.tesztGyakorisaga;
+      obj.K10b_feladatGyakorisaga = this.feladatGyakorisaga;
+      obj.K10c_forumGyakorisaga = this.forumGyakorisaga;
+      obj.K10d_tananyagGyakorisaga = this.tananyagGyakorisaga;
+      obj.K10e_oldalGyakorisaga = this.oldalGyakorisaga;
+      obj.K10f_urlGyakorisaga = this.urlGyakorisaga;
+      obj.K10g_fogalomtarGyakorisaga = this.fogalomtarGyakorisaga;
+      obj.K10h_visszajelzesGyakorisaga = this.visszajelzesGyakorisaga;
+      obj.K10i_valasztasGyakorisaga = this.valasztasGyakorisaga;
+      obj.K10j_adatbazisGyakorisaga = this.adatbazisGyakorisaga;
+      obj.K10k_wikiGyakorisaga = this.wikiGyakorisaga;
+      obj.K11_hasznosNappali = this.hasznosNappali;
+      obj.K12_hasznosEsti = this.hasznosEsti;
+      obj.K13_lmsElegedett = this.lmsElegedett;
     }
 
     db.collection("valaszok2") // Elem feltöltése az adatbázisba
