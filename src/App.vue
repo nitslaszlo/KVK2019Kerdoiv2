@@ -3,7 +3,7 @@
     <v-app>
       <v-toolbar app>
         <v-icon large left>mdi-chart-line</v-icon>
-        <v-toolbar-title>LMS keretrendszerek az iskolarendszerű szakképzésben - kérdőív</v-toolbar-title>
+        <v-toolbar-title>LMS keretrendszerek az iskolarendszerű szakképzésben - kérdőív tanárok/szakoktatók számára</v-toolbar-title>
         <v-spacer/>
       </v-toolbar>
       <v-content>
@@ -16,7 +16,7 @@
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>place</v-icon>
-                    <span>1. Melyik megyében / megyékben található az intézmény?</span>
+                    <span>1. Melyik megyében / megyékben tanít?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -33,46 +33,47 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 2. Tanulók száma a nappali tagozaton -->
+            <!-- 2. Melyik korcsoportba tarozik? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>group_add</v-icon>
-                    <span>2. Tanulók száma a nappali tagozaton</span>
+                    <span>2. Melyik korcsoportba tartozik?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
                   <v-select
-                    :items="tanulokSzamaLista"
-                    suffix="fő"
+                    :items="korcsoportokLista"
+                    suffix="év"
                     clearable
-                    label="Tanulók száma"
+                    label="Korcsoport"
                     outline
-                    v-model="tanulokSzama"
+                    v-model="korcsoport"
                   />
                 </v-card-actions>
               </v-card>
             </v-flex>
-            <!-- 3. Fő állású tanárok / szakoktatók száma az intézményben -->
+            <!-- 3. Milyen típusú tantárgyakat tanít? -->
             <v-flex xs12 sm12 md12 lg12 xl12>
               <v-card class="mx-auto my-2" color="lightblue" max-width="600" elevation="18" dark>
                 <v-img></v-img>
                 <v-card-title primary-title>
                   <div>
                     <v-icon class="floatleft" large left>person</v-icon>
-                    <span>3. Fő állású tanárok / szakoktatók száma az intézményben</span>
+                    <span>3. Milyen típusú tantárgyakat tanít?</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>
                   <v-select
-                    :items="tanarokSzamaLista"
-                    suffix="fő"
+                    :items="tantargyakTipusaLista"
                     clearable
-                    label="Tanárok száma"
+                    chips
+                    multiple
+                    label="Tanárgyak típusa"
                     outline
-                    v-model="tanarokSzama"
+                    v-model="tantargyakTipusa"
                   />
                 </v-card-actions>
               </v-card>
@@ -361,15 +362,20 @@ export default class App extends Vue {
     "Zala megye"
   ];
 
-  private tanulokSzamaLista: string[] = [
-    "1-50",
-    "51-100",
-    "101-150",
-    "151-200",
-    "201-500",
-    "501-1000",
-    "1001-2000",
-    "2001-"
+
+
+  private korcsoportokLista: string[] = [
+    "20-29",
+    "30-39",
+    "40-49",
+    "50-59",
+    "60-65",
+    "65-feletti"
+  ];
+
+  private tantargyakTipusaLista: string[] = [
+    "Közismereti",
+    "Szakmai"
   ];
 
   private tanarokSzamaLista: string[] = [
@@ -405,9 +411,9 @@ export default class App extends Vue {
     "101-"
   ];
 
-  private megyek: string[] = [];
-  private tanulokSzama: string = "";
-  private tanarokSzama: string = "";
+  private megyek: string[] = []; // 1
+  private korcsoport: string = "";  // 2
+  private tantargyakTipusa: string = ""; // 3
   private rendszergazdakSzama: string = "";
   private letoltesiSebesseg: string = "";
   private szamitogepekSzama: string = "";
@@ -422,8 +428,8 @@ export default class App extends Vue {
   // Új elem hozzáadása az adatbázishoz
   private add(): void {
     if (this.megyek.length === 0 ||
-        this.tanulokSzama === "" ||
-        this.tanarokSzama === "" ||
+        this.korcsoport === "" ||
+        this.tantargyakTipusa === "" ||
         this.rendszergazdakSzama === "" ||
         this.letoltesiSebesseg === "" ||
         this.szamitogepekSzama === "") {
@@ -432,9 +438,9 @@ export default class App extends Vue {
         }
     const obj = {} as any;
     obj.createdAt = new Date();
-    obj.megyek = this.megyek;
-    obj.tanulokSzama = this.tanulokSzama;
-    obj.tanarokSzama = this.tanarokSzama;
+    obj.megyek = this.megyek; // 1.
+    obj.korcsoport = this.korcsoport; // 2.
+    obj.tanargyakTipusa = this.tantargyakTipusa; // 3.
     obj.rendszergazdakSzama = this.rendszergazdakSzama;
     obj.letoltesiSebesseg = this.letoltesiSebesseg;
     obj.szamitogepekSzama = this.szamitogepekSzama;
@@ -460,7 +466,7 @@ export default class App extends Vue {
         return;
       });
     this.megyek = [];
-    this.tanulokSzama = "";
+    this.korcsoport = "";
     this.tanarokSzama = "";
     this.rendszergazdakSzama = "";
     this.letoltesiSebesseg = "";
