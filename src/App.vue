@@ -382,7 +382,7 @@
                     suffix
                     clearable
                     :disabled="!lmsYorN"
-                    label="10.11 Tanulói együttműködésen alapuló feladatok megoldása (pl. Wiki oldalak készítése)"
+                    label="10.11 Wiki oldalak készítése (tanulói együttműködés)"
                     outline
                     v-model="wikiGyakorisaga"
                   />
